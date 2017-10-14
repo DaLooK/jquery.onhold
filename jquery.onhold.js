@@ -9,7 +9,8 @@ $.fn.extend({
         let thisObject = this;
         this.velocityControlTimeoutId = setTimeout(function () {
             thisObject.onHoldCallback();
-            thisObject.velocityTicksCount++;
+            if (thisObject.velocityTicksCount<=thisObject.velocityTicksBeforeFast)
+                thisObject.velocityTicksCount++;
             thisObject.makeTimeout();
         }, (this.velocityTicksCount>this.velocityTicksBeforeFast?this.velocityFastTimeout:this.velocitySlowTimeout));
         return this;
